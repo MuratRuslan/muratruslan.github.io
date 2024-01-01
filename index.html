@@ -1,381 +1,805 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.118.2">
-    <title>Album example · Bootstrap v5.3</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
-
-    
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-<link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#712cf9">
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-
-      .bd-mode-toggle .dropdown-menu .active .bi {
-        display: block !important;
-      }
-    </style>
-
-    
-  </head>
-  <body>
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-      </symbol>
-    </svg>
-
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
+<div style="width: 393.01px; height: 0px; border: 1px black solid"></div>
+<div style="width: 393px; height: 1802px; position: relative; background: white">
+  <div style="width: 846.60px; height: 685.65px; left: -303px; top: 908.03px; position: absolute; transform: rotate(-35.28deg); transform-origin: 0 0; text-align: center; font-size: 48px; font-family: Petrona; font-style: italic; font-weight: 600; word-wrap: break-word">БЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРБЕЛЕКБЕРЛЕКБЕР</div>
+  <div style="width: 393px; height: 1011px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE792 0%, rgba(254.64, 234.75, 73.25, 0.44) 11%, rgba(255, 236.19, 66.94, 0.37) 57%)"></div>
+  <div style="width: 380px; height: 79px; left: 7px; top: 64px; position: absolute; background: white; border-radius: 37px"></div>
+  <div style="width: 393px; height: 974px; left: 0px; top: 878px; position: absolute; background: linear-gradient(360deg, #FB9595 0%, rgba(255, 121.12, 121.12, 0) 100%)"></div>
+  <div style="width: 247px; height: 62px; left: 73px; top: 74px; position: absolute; background: white; box-shadow: 50px 50px 50px; filter: blur(50px)"></div>
+  <div style="width: 360px; height: 360px; left: 16px; top: 799px; position: absolute; background: linear-gradient(180deg, rgba(255, 232, 149, 0.85) 0%, rgba(250, 149, 149, 0.85) 100%); box-shadow: 50px 50px 50px; border-radius: 35px; filter: blur(50px)"></div>
+  <img style="width: 170px; height: 164px; left: 202px; top: 806px; position: absolute; border-top-left-radius: 35px; border: 4px #FFDF36 solid" src="https://via.placeholder.com/170x164" />
+  <img style="width: 170px; height: 165px; left: 21px; top: 806px; position: absolute; border-top-left-radius: 35px; border: 4px #FFDF36 solid" src="https://via.placeholder.com/170x165" />
+  <img style="width: 170px; height: 170px; left: 202px; top: 986px; position: absolute; border-top-left-radius: 35px; border: 4px #FFDF36 solid" src="https://via.placeholder.com/170x170" />
+  <div style="width: 42.39px; height: 38.35px; left: 250.27px; top: 958.61px; position: absolute; transform: rotate(-176.48deg); transform-origin: 0 0; background: #C13225; border: 5px #252525 solid"></div>
+  <div style="width: 21.14px; height: 33.30px; left: 211.47px; top: 988px; position: absolute; transform: rotate(157.10deg); transform-origin: 0 0; background: #A82522; border: 3px #252525 solid"></div>
+  <div style="width: 210px; height: 81px; left: 162px; top: 1608px; position: absolute"></div>
+  <div style="width: 39px; height: 28px; left: 249px; top: 1115px; position: absolute; color: #87FF85; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word">для</div>
+  <div style="width: 127px; height: 35px; left: 266px; top: 1089px; position: absolute; color: #BE49C0; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word">Подарки </div>
+  <div style="width: 72px; height: 28px; left: 296px; top: 1115px; position: absolute; color: #FFDF36; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word">детей</div>
+  <img style="width: 170px; height: 170px; left: 21px; top: 986px; position: absolute; border-top-left-radius: 35px; border: 4px #FFDF36 solid" src="https://via.placeholder.com/170x170" />
+  <div style="width: 132px; height: 52px; left: 45px; top: 1095px; position: absolute; text-align: right"><span style="color: #EA6D6D; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word">тайный</span><span style="color: #FF6155; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word"> </span><span style="color: white; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word">санта</span></div>
+  <div style="width: 41.69px; height: 38.34px; left: 144px; top: 958.61px; position: absolute; transform: rotate(-3.58deg); transform-origin: 0 0; background: #C13225; border: 5px #252525 solid"></div>
+  <div style="width: 21.14px; height: 33.46px; left: 182.29px; top: 988px; position: absolute; transform: rotate(22.90deg); transform-origin: 0 0; background: #A82522; border: 3px #252525 solid"></div>
+  <div style="width: 20px; height: 24px; left: 187px; top: 967px; position: absolute; background: #FF6155; border-radius: 7px; border: 5px #252525 solid"></div>
+  <div style="width: 10px; height: 17px; left: 192px; top: 970px; position: absolute; background: #FF8B85; border-radius: 16px"></div>
+  <div style="width: 10px; height: 17px; left: 192px; top: 970px; position: absolute; background: #FF8B85; border-radius: 16px"></div>
+  <div style="width: 99px; height: 68px; left: 212px; top: 899px; position: absolute"><span style="color: white; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word">Подарки<br/>для </span><span style="color: #BF2B31; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word">НЕГО</span></div>
+  <div style="width: 99px; height: 68px; left: 81px; top: 899px; position: absolute; text-align: right"><span style="color: white; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word">Подарки<br/>для </span><span style="color: #F1CD70; font-size: 20px; font-family: Inter; font-weight: 900; word-wrap: break-word">НЕЁ</span></div>
+  <img style="width: 394px; height: 323px; left: -1px; top: 1267px; position: absolute; border-left: 6px #5930FF solid; border-top: 6px #5930FF solid; border-right: 6px #5930FF solid" src="https://via.placeholder.com/394x323" />
+  <div style="width: 394px; height: 70px; left: -1px; top: 1590px; position: absolute; background: linear-gradient(270deg, #F5BD4C 0%, #F9D16D 100%); border-left: 6px #592FFF solid; border-right: 6px #592FFF solid; border-bottom: 6px #592FFF solid"></div>
+  <div style="width: 394px; height: 29px; left: -2px; top: 1583px; position: absolute; background: linear-gradient(270deg, #F5BD4C 0%, #F9D16D 100%); box-shadow: 30px 30px 30px; filter: blur(30px)"></div>
+  <div style="width: 210px; height: 63px; left: 162px; top: 1626px; position: absolute; background: #B9353E; border-radius: 25px"></div>
+  <div style="width: 210px; height: 67px; left: 162px; top: 1608px; position: absolute; background: #D84A53; border-radius: 25px"></div>
+  <div style="width: 162px; height: 48px; left: 186px; top: 1618px; position: absolute; text-align: center; color: #FFD260; font-size: 24px; font-family: Inter; font-weight: 800; word-wrap: break-word">создать свой бокс</div>
+  <div style="width: 219px; left: 87px; top: 83px; position: absolute; text-align: center; color: #4401D3; font-size: 36px; font-family: Krona One; font-weight: 400; word-wrap: break-word">BelekBer</div>
+  <div style="width: 50px; height: 44px; left: 324px; top: 82px; position: absolute">
+    <div style="width: 43px; height: 43px; left: 3px; top: 0px; position: absolute; background: #4401D3; border-radius: 9999px"></div>
+    <div style="width: 10px; height: 6px; left: 13px; top: 7px; position: absolute; border: 2px #CB0E0E solid"></div>
+    <div style="width: 10px; height: 6px; left: 36px; top: 7px; position: absolute; transform: rotate(180deg); transform-origin: 0 0; border: 2px #CB0E0E solid"></div>
+    <div style="width: 5px; height: 2.50px; left: 22px; top: 11.50px; position: absolute; background: #FFDF36"></div>
+    <div style="width: 25px; height: 5px; left: 12px; top: 21px; position: absolute; background: #FFDF36; border-radius: 1px"></div>
+    <div style="width: 25px; height: 5px; left: 12px; top: 30px; position: absolute; background: #FFDF36; border-radius: 1px"></div>
+    <div style="width: 5px; height: 5px; left: 22px; top: 21px; position: absolute; background: #CB0E0E"></div>
+    <div style="width: 5px; height: 4px; left: 22px; top: 30px; position: absolute; background: #CB0E0E"></div>
+    <div style="width: 25px; height: 5px; left: 12px; top: 12px; position: absolute; background: #FFDF36; border-radius: 1px"></div>
+    <div style="width: 5px; height: 4px; left: 22px; top: 13px; position: absolute; background: #CB0E0E"></div>
+  </div>
+  <div style="width: 44px; height: 35px; left: 23px; top: 88px; position: absolute; background: #4401D3; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 50px; border: 3px #FFB954 solid">
+    <div style="width: 26px; height: 19px; left: 9px; top: 8px; position: absolute">
+      <div style="width: 18px; height: 19px; left: 4px; top: 0px; position: absolute; background: white"></div>
     </div>
-
-    
-<header data-bs-theme="dark">
-  <div class="collapse text-bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4>About</h4>
-          <p class="text-body-secondary">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4>Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
-        </div>
+  </div>
+  <div style="width: 393px; height: 170px; left: 1px; top: 604px; position: absolute; background: rgba(255, 255, 255, 0.33)"></div>
+  <div style="width: 337px; height: 428px; left: 28px; top: 166px; position: absolute; background: rgba(255, 255, 255, 0)">
+    <div style="width: 337px; height: 428px; left: -698px; top: 0px; position: absolute; background: #D9D9D9; border-radius: 20px"></div>
+    <img style="width: 337px; height: 428px; left: 349px; top: 0px; position: absolute; border-radius: 20px; border: 4px #BEC5FF solid" src="https://via.placeholder.com/337x428" />
+    <img style="width: 337px; height: 428px; left: 698px; top: 0px; position: absolute; border-radius: 20px; border: 4px #A5E99A solid" src="https://via.placeholder.com/337x428" />
+    <img style="width: 337px; height: 248px; left: 698px; top: 180px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 20px; border-top-right-radius: 20px; border-left: 4px #A9E495 solid; border-right: 4px #A9E495 solid; border-bottom: 4px #A9E495 solid" src="https://via.placeholder.com/337x248" />
+    <img style="width: 72px; height: 76px; left: 6px; top: 309px; position: absolute" src="https://via.placeholder.com/72x76" />
+    <div style="width: 337px; height: 428px; left: -349px; top: 0px; position: absolute; background: #D9D9D9; border-radius: 20px"></div>
+    <img style="width: 337px; height: 428px; left: 0px; top: 0px; position: absolute; border-radius: 20px; border: 4px #D1CC4E solid" src="https://via.placeholder.com/337x428" />
+  </div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 754px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px black solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px black solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+  <div style="width: 49px; height: 5px; left: 66px; top: 818px; position: absolute; background: black; border-radius: 3px"></div>
+</div>
+<div style="width: 186px; height: 190.84px; position: relative">
+  <img style="width: 170px; height: 165px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 35px; border: 15px #FFDF36 solid" src="https://via.placeholder.com/170x165" />
+  <div style="width: 41.69px; height: 38.34px; left: 123px; top: 152.61px; position: absolute; transform: rotate(-3.58deg); transform-origin: 0 0; background: #C13225; border: 5px #252525 solid"></div>
+  <div style="width: 20px; height: 24px; left: 166px; top: 161px; position: absolute; background: #FF6155; border-radius: 7px; border: 5px #252525 solid"></div>
+  <div style="width: 99px; height: 68px; left: 50px; top: 91px; position: absolute; text-align: right"><span style="color: white; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word">Подарки<br/>для </span><span style="color: #F1CD70; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word">НЕЁ</span></div>
+  <div style="width: 10px; height: 17px; left: 171px; top: 164px; position: absolute; background: #FF8B85; border-radius: 16px"></div>
+</div>
+<div style="width: 186px; height: 200px; position: relative">
+  <img style="width: 170px; height: 170px; left: 0px; top: 30px; position: absolute; border-top-left-radius: 35px; border: 15px #FFDF36 solid" src="https://via.placeholder.com/170x170" />
+  <div style="width: 60px; height: 52px; left: 86px; top: 140px; position: absolute; text-align: right"><span style="color: #EA6D6D; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word">тайный</span><span style="color: #FF6155; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word"> <br/></span><span style="color: white; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word">санта</span></div>
+  <div style="width: 41.69px; height: 38.34px; left: 123px; top: 2.61px; position: absolute; transform: rotate(-3.58deg); transform-origin: 0 0; background: #C13225; border: 5px #252525 solid"></div>
+  <div style="width: 21.14px; height: 33.46px; left: 161.29px; top: 32px; position: absolute; transform: rotate(22.90deg); transform-origin: 0 0; background: #A82522; border: 3px #252525 solid"></div>
+  <div style="width: 20px; height: 24px; left: 166px; top: 11px; position: absolute; background: #FF6155; border-radius: 7px; border: 5px #252525 solid"></div>
+  <div style="width: 10px; height: 17px; left: 171px; top: 14px; position: absolute; background: #FF8B85; border-radius: 16px"></div>
+</div>
+<div style="width: 206px; height: 200px; position: relative">
+  <img style="width: 170px; height: 170px; left: 15px; top: 30px; position: absolute; border-top-left-radius: 35px; border: 15px #FFDF36 solid" src="https://via.placeholder.com/170x170" />
+  <div style="width: 42.39px; height: 38.35px; left: 63.27px; top: 2.61px; position: absolute; transform: rotate(-176.48deg); transform-origin: 0 0; background: #C13225; border: 5px #252525 solid"></div>
+  <div style="width: 21.14px; height: 33.30px; left: 24.47px; top: 32px; position: absolute; transform: rotate(157.10deg); transform-origin: 0 0; background: #A82522; border: 3px #252525 solid"></div>
+  <div style="width: 39px; height: 28px; left: 74px; top: 159px; position: absolute; color: #87FF85; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word">для</div>
+  <div style="width: 127px; height: 35px; left: 88px; top: 136px; position: absolute; color: #BE49C0; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word">Подарки </div>
+  <div style="width: 72px; height: 28px; left: 109px; top: 159px; position: absolute; color: #FFDF36; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word">детей</div>
+  <div style="width: 20px; height: 24px; left: 0px; top: 11px; position: absolute; background: #FF6155; border-radius: 7px; border: 5px #252525 solid"></div>
+  <div style="width: 10px; height: 17px; left: 5px; top: 14px; position: absolute; background: #FF8B85; border-radius: 16px"></div>
+</div>
+<div style="width: 185px; height: 190.84px; position: relative">
+  <img style="width: 170px; height: 164px; left: 15px; top: 0px; position: absolute; border-top-left-radius: 35px; border: 15px #FFDF36 solid" src="https://via.placeholder.com/170x164" />
+  <div style="width: 42.39px; height: 38.35px; left: 63.27px; top: 152.61px; position: absolute; transform: rotate(-176.48deg); transform-origin: 0 0; background: #C13225; border: 5px #252525 solid"></div>
+  <div style="width: 20px; height: 24px; left: 0px; top: 161px; position: absolute; background: #FF6155; border-radius: 7px; border: 5px #252525 solid"></div>
+  <div style="width: 99px; height: 68px; left: 38px; top: 89px; position: absolute"><span style="color: white; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word">Подарки<br/>для </span><span style="color: #BF2B31; font-size: 15px; font-family: Inter; font-weight: 900; word-wrap: break-word">НЕГО</span></div>
+  <div style="width: 10px; height: 17px; left: 5px; top: 164px; position: absolute; background: #FF8B85; border-radius: 16px"></div>
+</div>
+<div style="color: black; font-size: 40px; font-family: Marck Script; font-weight: 400; word-wrap: break-word">Подарки разных <br/>видов, для всех <br/>возрастов<br/>на все случаи</div>
+<div style="width: 392px; height: 969px; position: relative; background: rgba(255, 255, 255, 0)">
+  <div style="width: 392px; height: 798px; left: 0px; top: 157px; position: absolute; background: linear-gradient(88deg, rgba(255, 255, 255, 0) 2%, rgba(104.82, 83.64, 131.77, 0.46) 33%, #634D7F 100%); border-top-left-radius: 20px"></div>
+  <div style="width: 392px; height: 157px; left: 0px; top: 0px; position: absolute; background: linear-gradient(270deg, #827099 0%, rgba(129.84, 112.20, 153, 0.51) 38%, rgba(129.84, 112.20, 153, 0.02) 77%, rgba(255, 255, 255, 0) 77%)"></div>
+  <div style="width: 209px; height: 37px; left: 139px; top: 102px; position: absolute; background: #FFF06B"></div>
+  <div style="width: 192px; height: 28px; left: 133px; top: 105px; position: absolute; text-align: center; color: #721CFF; font-size: 24px; font-family: Montserrat Alternates; font-style: italic; font-weight: 600; word-wrap: break-word">каталог</div>
+  <div style="width: 37px; height: 27px; left: 321px; top: 139px; position: absolute; transform: rotate(-90deg); transform-origin: 0 0; background: #827099"></div>
+  <img style="width: 233.34px; height: 229.26px; left: 91px; top: 357.31px; position: absolute; transform: rotate(-21.44deg); transform-origin: 0 0" src="https://via.placeholder.com/233x229" />
+  <img style="width: 67.75px; height: 73.70px; left: 131.78px; top: 239.21px; position: absolute; transform: rotate(37.76deg); transform-origin: 0 0" src="https://via.placeholder.com/68x74" />
+  <img style="width: 156.90px; height: 162.10px; left: 208px; top: 801px; position: absolute" src="https://via.placeholder.com/157x162" />
+  <img style="width: 86.94px; height: 90.07px; left: 286px; top: 187.64px; position: absolute; transform: rotate(-20.64deg); transform-origin: 0 0" src="https://via.placeholder.com/87x90" />
+  <img style="width: 213.27px; height: 199.85px; left: 91.67px; top: 529px; position: absolute; transform: rotate(7.38deg); transform-origin: 0 0" src="https://via.placeholder.com/213x200" />
+  <div style="width: 346px; height: 585px; left: 46px; top: 158px; position: absolute; background: rgba(255, 255, 255, 0); border-top-left-radius: 5px; overflow: hidden">
+    <div style="width: 316px; height: 63px; left: 15px; top: 261px; position: absolute; background: linear-gradient(266deg, #818181 0%, rgba(129, 129, 129, 0) 100%); border-radius: 5px"></div>
+    <div style="width: 59px; height: 57px; left: 18px; top: 264px; position: absolute; background: #D9D9D9; border-radius: 2.50px"></div>
+    <div style="width: 316px; height: 63px; left: 15px; top: 423px; position: absolute; background: linear-gradient(270deg, #818181 0%, rgba(129, 129, 129, 0) 100%); border-radius: 5px"></div>
+    <div style="width: 59px; height: 57px; left: 18px; top: 426px; position: absolute; background: #D9D9D9; border-radius: 2.50px"></div>
+    <div style="width: 316px; height: 63px; left: 15px; top: 504px; position: absolute; background: linear-gradient(94deg, #818181 0%, rgba(129, 129, 129, 0) 100%); border-radius: 5px"></div>
+    <div style="width: 62px; height: 174px; left: 251px; top: 585px; position: absolute; background: #634D7F; border-radius: 5px"></div>
+    <div style="width: 59px; height: 57px; left: 18px; top: 507px; position: absolute; background: #D9D9D9; border-radius: 2.50px"></div>
+    <div style="left: 145px; top: 266px; position: absolute; text-align: right"><span style="color: white; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">Подарки на </span><span style="color: white; font-size: 20px; font-family: Open Sans; font-weight: 700; word-wrap: break-word">день <br/>рождения</span></div>
+    <div style="width: 316px; height: 63px; left: 15px; top: 342px; position: absolute; background: linear-gradient(180deg, #818181 0%, rgba(129, 129, 129, 0) 100%); border-radius: 5px"></div>
+    <div style="left: 178px; top: 360px; position: absolute; text-align: right; color: white; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">Еда и напитки</div>
+    <div style="left: 208px; top: 441px; position: absolute; text-align: right; color: white; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">Аксессуары</div>
+    <div style="left: 150px; top: 522px; position: absolute; text-align: right; color: white; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">Брендовые вещи</div>
+    <div style="width: 316px; height: 63px; left: 15px; top: 18px; position: absolute; background: linear-gradient(112deg, #818181 0%, rgba(128.56, 128.56, 128.56, 0) 100%); border-radius: 5px"></div>
+    <div style="width: 316px; height: 63px; left: 15px; top: 180px; position: absolute; background: linear-gradient(207deg, #818181 0%, rgba(129, 129, 129, 0) 100%); border-radius: 5px"></div>
+    <div style="width: 59px; height: 57px; left: 18px; top: 183px; position: absolute; background: #D9D9D9; border-radius: 2.50px"></div>
+    <div style="left: 151px; top: 198px; position: absolute"><span style="color: white; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">Подарки для </span><span style="color: white; font-size: 20px; font-family: Open Sans; font-weight: 800; word-wrap: break-word">нее</span></div>
+    <div style="width: 227px; height: 24px; left: 102px; top: 37px; position: absolute; color: white; font-size: 20px; font-family: Kyiv*Type Titling; font-weight: 840; word-wrap: break-word">Новогодние подарки</div>
+    <div style="width: 57px; height: 57px; left: 18px; top: 21px; position: absolute; background: #D9D9D9; border-radius: 2.50px"></div>
+    <div style="width: 316px; height: 63px; left: 15px; top: 99px; position: absolute; background: linear-gradient(148deg, #818181 0%, rgba(129, 129, 129, 0) 100%); border-radius: 5px"></div>
+    <div style="width: 59px; height: 57px; left: 18px; top: 102px; position: absolute; background: #D9D9D9; border-radius: 2.50px"></div>
+    <div style="left: 140px; top: 117px; position: absolute"><span style="color: white; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">Подарки для </span><span style="color: white; font-size: 20px; font-family: Open Sans; font-weight: 800; word-wrap: break-word">него</span></div>
+    <div style="width: 59px; height: 57px; left: 18px; top: 345px; position: absolute; background: #D9D9D9; border-radius: 2.50px"></div>
+  </div>
+  <div style="width: 161px; height: 49px; left: 167px; top: 773px; position: absolute">
+    <div style="width: 52px; height: 45px; left: 109px; top: 3px; position: absolute">
+      <div style="width: 351px; height: 78px; left: -256px; top: -17px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 0px; top: 0px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px black solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px black solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px black solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px black solid"></div>
+      <div style="width: 49px; height: 5px; left: 4px; top: 50px; position: absolute; background: black; border-radius: 3px"></div>
+    </div>
+  </div>
+  <div style="width: 59px; height: 57px; left: 64px; top: 920px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 2.50px"></div>
+  <div style="width: 47px; height: 47px; left: 70px; top: 776px; position: absolute">
+    <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+    <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+  </div>
+</div>
+<div style="width: 393px; height: 2084px; position: relative; background: white">
+  <div style="width: 344px; height: 265px; left: 25px; top: 68px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 391px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 692px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 993px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 1294px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 1595px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 816px; left: 25px; top: 68px; position: absolute"></div>
+</div>
+<div style="width: 393px; height: 2084px; position: relative; background: white">
+  <div style="width: 344px; height: 265px; left: 25px; top: 68px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 391px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 692px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 993px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 1294px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 265px; left: 25px; top: 1595px; position: absolute; background: #D9D9D9; border-radius: 15px"></div>
+  <div style="width: 344px; height: 816px; left: 25px; top: 68px; position: absolute"></div>
+</div>
+<div style="width: 393px; height: 1556px; position: relative; background: white">
+  <div style="width: 352px; height: 49px; left: 21px; top: 73px; position: absolute; background: #4401D3; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 50px; border: 3px #FFB954 solid">
+    <div style="width: 31px; height: 28px; left: 15px; top: 10px; position: absolute">
+      <div style="width: 18px; height: 19px; left: 7px; top: 5px; position: absolute; background: white"></div>
+    </div>
+    <img style="width: 41px; height: 28px; left: 292px; top: 10px; position: absolute" src="https://via.placeholder.com/41x28" />
+    <div style="width: 3px; height: 3px; left: 290px; top: 19px; position: absolute; background: white; border-radius: 9999px"></div>
+    <div style="width: 3px; height: 3px; left: 280px; top: 8px; position: absolute; background: white; border-radius: 9999px"></div>
+    <div style="width: 3px; height: 3px; left: 343px; top: 30px; position: absolute; background: white; border-radius: 9999px"></div>
+    <div style="width: 2px; height: 2px; left: 299px; top: 11px; position: absolute; background: white; border-radius: 9999px"></div>
+    <div style="width: 2px; height: 2px; left: 340px; top: 19px; position: absolute; background: white; border-radius: 9999px"></div>
+    <div style="width: 2px; height: 2px; left: 323px; top: 6px; position: absolute; background: white; border-radius: 9999px"></div>
+  </div>
+  <div style="width: 56.74px; height: 8px; left: 308.48px; top: 111px; position: absolute; background: white"></div>
+  <div style="width: 45px; height: 8px; left: 288px; top: 111px; position: absolute; background: white"></div>
+  <div style="width: 40px; height: 3px; left: 313px; top: 111px; position: absolute; background: #CBCBCB"></div>
+  <div style="width: 84px; height: 24px; left: 25px; top: 150px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">фильтр</div>
+  <div style="width: 357px; height: 646px; left: 18px; top: 202px; position: absolute">
+    <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 163px; height: 196px; left: 194px; top: 0px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 163px; height: 196px; left: 0px; top: 244px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 163px; height: 196px; left: 194px; top: 244px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 163px; height: 196px; left: 0px; top: 488px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 163px; height: 196px; left: 194px; top: 488px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 163px; height: 196px; left: 0px; top: 732px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 163px; height: 196px; left: 194px; top: 732px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 163px; height: 196px; left: 0px; top: 976px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 163px; height: 196px; left: 194px; top: 976px; position: absolute">
+      <div style="width: 153px; height: 153px; left: 5px; top: 5px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+      <div style="width: 163px; height: 196px; left: 0px; top: 0px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+    </div>
+    <div style="width: 351px; height: 78px; left: 3px; top: 552px; position: absolute">
+      <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+      <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+        <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+        <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      </div>
+      <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+        <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+        <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+        <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+        <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+        <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+        <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+        <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+        <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+        <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      </div>
+      <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+        <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+        <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+        <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+        <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
       </div>
     </div>
   </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>Album</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
     </div>
   </div>
-</header>
-
-<main>
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
-      </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
     </div>
-  </section>
-
-  <div class="album py-5 bg-body-tertiary">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
     </div>
   </div>
-
-</main>
-
-    
-<button class="btn btn-primary d-inline-flex align-items-center" type="button">
-    AKtan button
-    <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>
-  </button>
-
-    <button class="btn btn-success rounded-pill px-3" type="button">Murat Button</button>
-<footer class="text-body-secondary py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
   </div>
-</footer>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-    </body>
-</html>
-
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="width: 393px; height: 1231px; position: relative; background: white">
+  <img style="width: 54px; height: 54px; left: 328px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 249px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 170px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 12px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <img style="width: 54px; height: 54px; left: 91px; top: 1066px; position: absolute; opacity: 0.50" src="https://via.placeholder.com/54x54" />
+  <div style="width: 75px; height: 63px; left: 48px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 341px; left: 18px; top: 660px; position: absolute; background: #EBEBEB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 35px"></div>
+  <div style="width: 234px; height: 63px; left: 142px; top: 550px; position: absolute; background: #D9D9D9; border-radius: 35px"></div>
+  <div style="width: 358px; height: 393px; left: 18px; top: 133px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 9.50px; border: 2px #9F9F9F solid"></div>
+  <div style="width: 336px; height: 307px; left: 29px; top: 143px; position: absolute; background: #D9D9D9; border-radius: 5px"></div>
+  <div style="width: 343px; height: 264px; left: 25px; top: 726px; position: absolute; background: white; border-radius: 20px"></div>
+  <div style="width: 152px; height: 41px; left: 39px; top: 675px; position: absolute; background: white; border-radius: 35px"></div>
+  <div style="width: 92px; height: 27px; left: 69px; top: 682px; position: absolute; color: black; font-size: 20px; font-family: Open Sans; font-weight: 600; word-wrap: break-word">О товаре<br/></div>
+  <div style="width: 358px; height: 852px; left: 18px; top: 133px; position: absolute"></div>
+  <div style="width: 351px; height: 78px; left: 21px; top: 755px; position: absolute">
+    <div style="width: 351px; height: 78px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, #FFE484 0%, #FF962D 81%, #FF922D 81%); border-radius: 35px"></div>
+    <div style="width: 47px; height: 47px; left: 48px; top: 17px; position: absolute">
+      <div style="width: 43px; height: 42px; left: 0px; top: 0px; position: absolute; background: rgba(226.31, 171.62, 89.58, 0); border-radius: 4px; border: 4px white solid"></div>
+      <div style="width: 6px; height: 12px; left: 18px; top: 26px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+    <div style="width: 52px; height: 45px; left: 256px; top: 17px; position: absolute">
+      <div style="width: 42px; height: 24px; left: 10px; top: 7px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 3px; border: 4px white solid"></div>
+      <div style="width: 19px; height: 3px; left: 27px; top: 14px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 11.66px; height: 3.98px; left: 13.52px; top: 4.02px; position: absolute; transform: rotate(78.79deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 10.71px; height: 3.64px; left: 13.49px; top: 7.74px; position: absolute; transform: rotate(-168.41deg); transform-origin: 0 0; background: white; border-radius: 3px"></div>
+      <div style="width: 20px; height: 3px; left: 23px; top: 21px; position: absolute; background: white; border-radius: 3px"></div>
+      <div style="width: 4px; height: 26px; left: 38px; top: 33px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: white"></div>
+      <div style="width: 4px; height: 9px; left: 38px; top: 28px; position: absolute; background: white; border-top-left-radius: 2px; border-top-right-radius: 3px"></div>
+      <div style="width: 5px; height: 5px; left: 34px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div style="width: 5px; height: 5px; left: 17px; top: 38px; position: absolute; background: white; border-radius: 9999px"></div>
+    </div>
+    <div style="width: 57px; height: 49px; left: 147px; top: 14px; position: absolute">
+      <div style="width: 10px; height: 10px; left: 13px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 9px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 13px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+      <div style="width: 10px; height: 10px; left: 34px; top: 31px; position: absolute; background: rgba(255, 255, 255, 0); border-radius: 1px; border: 4px white solid"></div>
+    </div>
+  </div>
+</div>
+<div style="color: black; font-size: 40px; font-family: Marck Script; font-weight: 400; word-wrap: break-word">Ар т</div>
+<div style="width: 356px; height: 220px; color: black; font-size: 32px; font-family: Open Sans; font-weight: 700; word-wrap: break-word">Ар түрдүү<br/>белектер, <br/>ар бир куракка, <br/>ар кандай учурга</div>
